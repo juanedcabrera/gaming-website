@@ -71,6 +71,15 @@ const RandomCreators: React.FC = () => {
     onSwipedRight: handleSwipeRight,
   });
   const lastPage = Math.ceil(users.length / (usersPerPageDesktop));
+  console.log({users})
+
+  const hasAvatar = (user: User) => {
+    if (!user.avatar || user.avatar == '') {
+      return '/avatar.png';
+    } else {
+      return user.avatar;
+    }
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto">
@@ -94,10 +103,11 @@ const RandomCreators: React.FC = () => {
                   <Link href={`/profile/${user._id}`} passHref>
                   
                       <img
-                        src={user.avatar}
+                        src={hasAvatar(user)}
                         alt={user.userName}
                         className="w-full h-64 object-cover rounded-t-lg"
-                      />
+                      /> 
+                    
                       <div className="p-4">
                         <p className="text-base lg:text-lg mb-2">
                           By: {user.userName}
