@@ -146,7 +146,7 @@ const Profile = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {userGames.length > 0 ? (
                   userGames.map((game) => (
-                    <Card key={game._id}>
+                    <Card key={game._id} className='flex flex-col'>
                       <CardHeader>
                         <CardTitle className="text-3xl md:text-5xl font-semibold mb-4">
                           {game.title}
@@ -167,7 +167,7 @@ const Profile = () => {
                           Description: {game.description}
                         </p>
                       </CardContent>
-                      <CardFooter className="flex justify-between">
+                      <CardFooter className="flex justify-between mt-auto">
                         <div className="space-x-2">
                           <Button
                             className=""

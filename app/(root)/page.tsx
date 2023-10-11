@@ -15,11 +15,9 @@ export default function Landing() {
     <div className="text-slate-300 bg-gray-800">
       <div>
         <section className="bg-gray-800 text-white py-10">
+          <img src='/logo_large.png' alt='project 1 games logo' className='mx-auto m-0' />
           <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-4">
-              Discover Your Next Game
-            </h1>
-            <p className="text-lg mb-8">
+            <p className="text-lg mb-8 mt-10">
               Explore a vast collection of games and help support independent software engineers/game developers.
             </p>
             <a
