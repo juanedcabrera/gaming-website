@@ -16,10 +16,12 @@ interface Game {
   updatedAt: Date;
 }
 
+interface Props {
+  category: string;
+}
 
-const CategoryGames: React.FC = (params) => {
-  const category = params.category;
-  console.log(category);
+const CategoryGames: React.FC<Props> = (params) => {
+  const { category } = params
   const [games, setGames] = useState<Game[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const gamesPerPage = 6;

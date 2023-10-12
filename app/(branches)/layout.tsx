@@ -1,5 +1,5 @@
-import WebsiteFooter from "../components/Footer/page"
-import Navigation from "../components/Navigation/page"
+import WebsiteFooter from "../../components/Footer/page"
+import Navigation from "../../components/Navigation/page"
 import '../globals.css'
 import { Toaster } from "@/components/ui/toaster"
 

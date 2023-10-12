@@ -1,7 +1,4 @@
-import Navigation from "../../../components/Navigation/page";
-import GameInfo from "../../../components/GameInfo/page";
-
-
+import GameInfo from "../../../../components/GameInfo/page";
 
 const Game = () => {
     return (

@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
-import Navigation from '../components/Navigation/page';
-import Random from '../components/Random/page';
-import NewGames from '../components/NewGames/page';
-import HeroSection from '../components/HeroSection/page';
-import RandomCreators from '../components/RandomCreators/page';
+import Random from '../../components/Random/page';
+import NewGames from '../../components/NewGames/page';
+import HeroSection from '../../components/HeroSection/page';
+import RandomCreators from '../../components/RandomCreators/page';
 
 // Grab games from API and
 
