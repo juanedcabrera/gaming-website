@@ -1,5 +1,4 @@
-// Login component
-
+'use client'
 import React, { useState } from 'react';
 import jwt from 'jsonwebtoken';
 

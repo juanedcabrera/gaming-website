@@ -23,11 +23,8 @@ interface Game {
   description: string;
 }
 
-interface BlogFormProps {
-  onSubmit: (newPost: Post) => void;
-}
 
-const BlogPostForm: React.FC<BlogFormProps> = ({ onSubmit }) => {
+const BlogPostForm: React.FC = () => {
   // State Hooks
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

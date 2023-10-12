@@ -21,11 +21,8 @@ interface Game {
   description: string;
 }
 
-interface BlogFormProps {
-  onSubmit: (newPost: Post) => void;
-}
 
-const BlogPostForm: React.FC<BlogFormProps> = ({ onSubmit }) => {
+const BlogPostForm: React.FC = () => {
   // State Hooks
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -116,7 +113,7 @@ const BlogPostForm: React.FC<BlogFormProps> = ({ onSubmit }) => {
       }
 
       const data = await response.json();
-      onSubmit(data.newBlogPost);
+      // onSubmit(data.newBlogPost);
 
       // Clear form fields after successful submission
       setTitle('');
