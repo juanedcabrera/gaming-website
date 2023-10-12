@@ -1,47 +1,42 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSwipeable } from 'react-swipeable';
 
-interface Game {
+interface User {
   _id: string;
-  title: string;
+  email: string;
   userName: string;
-  category: string;
-  description: string;
-  image: string;
-  likes: number;
-  comments: number;
-  views: number;
-  createdAt: Date;
-  updatedAt: Date;
+  avatar: string;
+  bio: string;
+  games: string[];
 }
 
-const Random: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
+const RandomCreators: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesPerPageDesktop = 3;
-  const gamesPerPageMobile = 2;
+  const usersPerPageDesktop = 3;
+  const usersPerPageMobile = 2;
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-
-  const fetchRandomGames = async () => {
+  const fetchRandomUsers = async () => {
     try {
-      // Make an API request to fetch random games data
-      const response = await fetch(`${apiUrl}/api-v1/game/random`);
+      // Make an API request to fetch random users data
+      const response = await fetch(`${apiUrl}/api-v1/users/random`);
       if (!response.ok) {
-        throw new Error('Failed to fetch random games');
+        throw new Error('Failed to fetch random users');
       }
 
       // Parse the response data as JSON
       const data = await response.json();
-      // Update the games state variable with the fetched data
-      setGames(data);
+      // Update the users state variable with the fetched data
+      setUsers(data);
     } catch (error) {
-      console.error('Error fetching random games:', error);
+      console.error('Error fetching random users:', error);
     }
   };
 
   useEffect(() => {
-    fetchRandomGames();
+    fetchRandomUsers();
   }, []);
 
 
@@ -55,7 +50,7 @@ const Random: React.FC = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [games]);
+  }, [users]);
 
   const canGoPrevious = currentPage > 1;
 
@@ -76,49 +71,53 @@ const Random: React.FC = () => {
     onSwipedLeft: handleSwipeLeft,
     onSwipedRight: handleSwipeRight,
   });
-  const lastPage = Math.ceil(games.length / (gamesPerPageDesktop));
+  const lastPage = Math.ceil(users.length / (usersPerPageDesktop));
+  console.log({users})
+
+  const hasAvatar = (user: User) => {
+    if (!user.avatar || user.avatar == '') {
+      return '/avatar.png';
+    } else {
+      return user.avatar;
+    }
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <h2 className="flex text-3xl font-bold mb-4 justify-center">Random Games</h2>
+      <h2 className="flex text-3xl font-bold mb-4 justify-center">Random Creators</h2>
       <div className="flex overflow-x-auto" {...swipeHandlers}>
-        {games.length > 0 ? (
-          games.map((game, index) => {
+        {users.length > 0 ? (
+          users.map((user, index) => {
             const isMobile = window.innerWidth <= 768;
-            const gamesPerPage = isMobile ? gamesPerPageMobile : gamesPerPageDesktop;
+            const usersPerPage = isMobile ? usersPerPageMobile : usersPerPageDesktop;
             if (
-              index >= (currentPage - 1) * gamesPerPage &&
-              index < currentPage * gamesPerPage
+              index >= (currentPage - 1) * usersPerPage &&
+              index < currentPage * usersPerPage
             ) {
               return (
                 <div
-                  key={game._id}
+                  key={user._id}
                   className={`flex-shrink-1 w-full ${
                     isMobile ? 'md:w-1/2' : 'md:w-1/3'
                   } bg-gray-900 rounded-lg shadow-lg p-1 mx-2`}
                 >
-                  <Link href={`/games/${game._id}`} passHref>
+                  <Link href={`/profile/${user._id}`} passHref>
                   
                       <img
-                        src={game.image || 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/'}
-                        alt={game.title}
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/';
-                        }}
+                        src={hasAvatar(user)}
+                        alt={user.userName}
                         className="w-full h-64 object-cover rounded-t-lg"
-                      />
+                      /> 
+                    
                       <div className="p-4">
-                        <h3 className="text-xl lg:text-2xl font-bold mb-2">
-                          {game.title}
-                        </h3>
                         <p className="text-base lg:text-lg mb-2">
-                          By: {game.userName}
+                          By: {user.userName}
                         </p>
                         <p className="text-base lg:text-lg mb-2">
-                          Category: {game.category}
+                          Games: {user.games?.length || 0}
                         </p>
-                        <p className="text-base lg:text-lg">
-                          Description: {game.description}
+                        <p className="text-base lg:text-lg mb-2">
+                          Bio: {user.bio}
                         </p>
                       </div>
                    
@@ -129,7 +128,7 @@ const Random: React.FC = () => {
             return null;
           })
         ) : (
-          <p>No games found.</p>
+          <p>No users found.</p>
         )}
       </div>
       <div className="flex justify-center mt-3">
@@ -154,4 +153,4 @@ const Random: React.FC = () => {
   );
 };
 
-export default Random;
+export default RandomCreators;

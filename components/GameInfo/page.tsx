@@ -1,9 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Like from '../Like/Like';
-import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
-import { TbCopy, TbBrandFacebook, TbBrandTwitter } from 'react-icons/tb'
-
 
 const GameComponent: React.FC = () => {
   const [game, setGame] = useState<any>(null);

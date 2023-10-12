@@ -1,5 +1,6 @@
+'use client'
 import React, { useState, useEffect } from 'react';
-import '../../../styles/tailwind.css';
+import '../../styles/tailwind.css';
 
 interface HeroGame {
   _id: string;
@@ -16,16 +17,15 @@ interface HeroGame {
   views: number;
 }
 
-interface HeroSectionProps {
-  objectIDs: string[];
-}
 
-const HeroSection: React.FC<HeroSectionProps> = ({ objectIDs }) => {
+
+const HeroSection: React.FC = () => {
   const [heroGame, setHeroGame] = useState<HeroGame | null>(null);
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
   const fetchHeroGame = async () => {
     try {
-      const objectID = objectIDs[0]; // Assuming only the first objectID is used
+      // This is the objectID of the game we want to feature in the hero section
+      const objectID = '648ef4e763c484e397d5dfa3'
 
       // Make an API request to fetch the hero game data based on the provided objectID
       const response = await fetch(`${apiUrl}/api-v1/game/${objectID}`);
@@ -44,7 +44,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ objectIDs }) => {
 
   useEffect(() => {
     fetchHeroGame();
-  }, [objectIDs]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center">

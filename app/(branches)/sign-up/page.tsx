@@ -1,6 +1,4 @@
-import Registration from "@/app/components/Registration/page";
-import Navigation from "../../components/Navigation/page";
-
+import Registration from "../../../components/Registration/page";
 
 const SignUp = () => {
     return (

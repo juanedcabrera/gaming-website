@@ -1,6 +1,5 @@
 import Footer from 'rc-footer';
 import 'rc-footer/assets/index.css';
-import { render } from 'react-dom';
 
 const WebsiteFooter = () => {
     return (

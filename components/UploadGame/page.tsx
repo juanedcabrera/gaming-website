@@ -1,6 +1,7 @@
+'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import jwt from 'jsonwebtoken';
-import { useToast } from '../../../components/ui/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 

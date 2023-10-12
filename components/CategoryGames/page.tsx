@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 
 interface Game {
@@ -19,7 +20,8 @@ interface Props {
   category: string;
 }
 
-const CategoryGames: React.FC<Props> = ({ category }) => {
+const CategoryGames: React.FC<Props> = (params) => {
+  const { category } = params
   const [games, setGames] = useState<Game[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const gamesPerPage = 6;

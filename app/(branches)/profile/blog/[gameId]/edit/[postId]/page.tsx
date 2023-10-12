@@ -1,8 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { redirect } from 'next/dist/server/api-utils';
-import router from 'next/router';
 
 // Interfaces
 interface Post {
@@ -23,11 +21,8 @@ interface Game {
   description: string;
 }
 
-interface BlogFormProps {
-  onSubmit: (newPost: Post) => void;
-}
 
-const BlogPostForm: React.FC<BlogFormProps> = ({ onSubmit }) => {
+const BlogPostForm: React.FC = () => {
   // State Hooks
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

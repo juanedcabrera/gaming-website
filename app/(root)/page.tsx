@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
-import Navigation from '../components/Navigation/page';
-import Random from '../components/Random/page';
-import NewGames from '../components/NewGames/page';
-import HeroSection from '../components/HeroSection/page';
-import RandomCreators from '../components/RandomCreators/page';
+import Random from '../../components/Random/page';
+import NewGames from '../../components/NewGames/page';
+import HeroSection from '../../components/HeroSection/page';
+import RandomCreators from '../../components/RandomCreators/page';
 
 // Grab games from API and
 
@@ -67,7 +66,7 @@ export default function Landing() {
         <h1 className="text-4xl font-bold mb-4 text-center">
         Featured Game
         </h1>
-        <HeroSection objectIDs={objectIDs} />
+        <HeroSection />
         </div>
         <div className='py-9'>
         <Random />

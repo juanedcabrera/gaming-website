@@ -1,13 +1,10 @@
 'use client';
-import PasswordReset from '../../components/PasswordReset/page';
-import Navigation from '../../components/Navigation/page';
 import jwt from 'jsonwebtoken';
 import { useState, useEffect } from 'react';
 import { set, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { cn } from '../../../lib/utils';
-import { Button } from '../../../components/ui/button';
+import { Button } from '../ui/button';
 import {
   Form,
   FormControl,
@@ -16,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../../components/ui/form';
-import { Textarea } from '../../../components/ui/textarea';
-import { useToast } from '../../../components/ui/use-toast';
+} from '../ui/form';
+import { Textarea } from '../ui/textarea';
+import { useToast } from '../ui/use-toast';
 import { Input } from '@/components/ui/input';
 
 interface Game {
@@ -36,7 +33,7 @@ interface Game {
   updatedAt: Date;
 }
 
-export function ProfileForm() {
+const ProfileForm: React.FC = () => {
   const [bio, setBio] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
   const [avatar, setAvatar] = useState<string>('');
@@ -98,36 +95,35 @@ export function ProfileForm() {
   // UPDATE PROFILE
   const updateProfile = async (data: FormValues) => {
     try {
-        const userId = decodedToken.id;
-        const endpoint = `${apiUrl}/api-v1/users/profile/${userId}`;
-        
-        // Only send fields that are not blank or undefined. Had to look this up.
-        const updatedData: Partial<FormValues> = {};
+      const userId = decodedToken.id;
+      const endpoint = `${apiUrl}/api-v1/users/profile/${userId}`;
 
-        if (bio) updatedData.bio = bio;
-        if (avatar) updatedData.avatar = avatar;
-        if (newPassword) updatedData.newPassword = newPassword;
+      // Only send fields that are not blank or undefined. Had to look this up.
+      const updatedData: Partial<FormValues> = {};
 
-        const response = await fetch(endpoint, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedData),
-        });
+      if (bio) updatedData.bio = bio;
+      if (avatar) updatedData.avatar = avatar;
+      if (newPassword) updatedData.newPassword = newPassword;
 
-        if (response.ok) {
-            console.error(`Profile update successful!`);
-        } else {
-            console.error(`Profile update failed.`);
-        }
+      const response = await fetch(endpoint, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (response.ok) {
+        console.error(`Profile update successful!`);
+      } else {
+        console.error(`Profile update failed.`);
+      }
     } catch (error) {
-        console.error(`An error occurred during profile update:`, error);
+      console.error(`An error occurred during profile update:`, error);
     }
-};
+  };
 
-
-  const {toast} = useToast();
+  const { toast } = useToast();
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -138,9 +134,9 @@ export function ProfileForm() {
     setAvatar('');
     setNewPassword('');
     toast({
-      title: "Profile Updated",
-      description: "Congratulations! Your profile has been updated.",
-    })
+      title: 'Profile Updated',
+      description: 'Congratulations! Your profile has been updated.',
+    });
   };
 
   return (
@@ -216,3 +212,5 @@ export function ProfileForm() {
     </div>
   );
 }
+
+export default ProfileForm;

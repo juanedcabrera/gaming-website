@@ -1,9 +1,15 @@
-'use client'
-import CategoryGames from '../../components/CategoryGames/page';
+'use client';
+import CategoryGames from '../../../components/CategoryGames/page';
 import { SetStateAction, useState } from 'react';
 
+interface Params {
+  params: {
+    category: string;
+  };
+}
+
 const Games = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Action');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const availableCategories = [
     'Action',
     'Adventure',
@@ -19,32 +25,35 @@ const Games = () => {
     'Arcade',
   ];
 
-  const handleCategoryChange = (event: { target: { value: SetStateAction<string> } }) => {
+  const handleCategoryChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setSelectedCategory(event.target.value);
-  };
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    // Redirect to the selected category page
-    window.location.href = `/games/categories/${selectedCategory}`;
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <select onChange={handleCategoryChange} value={selectedCategory}>
+          <option value="">Select a Category</option>
           {availableCategories.map((category) => (
             <option key={category} value={category}>
               {category}
             </option>
           ))}
         </select>
-        <button type="submit">View Games</button>
       </form>
       {/* Conditionally render CategoryGames components */}
-      {availableCategories.map((category) => (
-        <CategoryGames key={category} category={category} />
-      ))}
+      {selectedCategory ? (
+        <CategoryGames key={selectedCategory} category={selectedCategory} />
+      ) : (
+        <div>
+          {' '}
+          {availableCategories.map((category) => (
+            <CategoryGames category={category} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

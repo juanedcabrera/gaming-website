@@ -1,7 +1,6 @@
 'use client'
-import Navigation from "../../components/Navigation/page";
 import React from "react";
-import LoggingIn from "../../components/LoggingIn/page";
+import LoggingIn from "../../../components/LoggingIn/page";
 
 const Login = () => {
   return (
