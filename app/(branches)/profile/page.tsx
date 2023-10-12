@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { ProfileForm } from '@/app/components/ProfileForm/page';
+import ProfileForm from '@/app/components/ProfileForm/page';
 import {
   Card,
   CardContent,

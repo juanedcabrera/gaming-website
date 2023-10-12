@@ -67,7 +67,7 @@ export default function Landing() {
         <h1 className="text-4xl font-bold mb-4 text-center">
         Featured Game
         </h1>
-        <HeroSection objectIDs={objectIDs} />
+        <HeroSection />
         </div>
         <div className='py-9'>
         <Random />
