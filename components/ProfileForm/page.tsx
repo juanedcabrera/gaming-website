@@ -1,4 +1,3 @@
-'use client';
 import jwt from 'jsonwebtoken';
 import { useState, useEffect } from 'react';
 import { set, useForm } from 'react-hook-form';

@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import jwt from 'jsonwebtoken';
 import { useToast } from '@/components/ui/use-toast';
