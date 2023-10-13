@@ -65,11 +65,6 @@ const Upload: React.FC = () => {
 
     const token = localStorage.getItem('token');
 
-    // if (!link.startsWith('http://') && !link.startsWith('https://')) {
-    //   setMessage('Invalid URL - Link must start with http:// or https://');
-    //   return;
-    // }
-
     if (token) {
       const { userName } = jwt.decode(token) as { userName: string };
       const { userId } = jwt.decode(token) as { userId: string };
@@ -119,11 +114,10 @@ const Upload: React.FC = () => {
     });
   };
 
-  const user = jwt.decode(localStorage.getItem('token') as string);
 
   return (
     <div className="p-8 bg-gray-800">
-      {user ? (
+
         <>
           <h2 className="text-2xl font-bold mb-4 text-white">Upload Game</h2>
           {message && <p className="text-red-500 italic">{message}</p>}
@@ -241,14 +235,8 @@ const Upload: React.FC = () => {
             </Button>
           </form>
         </>
-      ) : (
-        (() => {
-          window.location.replace('/login');
-          return null;
-        })()
-      )}
     </div>
   );
-};
+}
 
 export default Upload;

@@ -1,5 +1,4 @@
 'use client'
-import React, { useState } from 'react';
 import UploadGame from "../../../../components/UploadGame/page";
 
 const Upload = () => {

@@ -19,7 +19,8 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [avatar, setAvatar] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const token = localStorage.getItem('token');
+  const token =
+    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
   const handleSearchSubmit = async (event: any) => {
@@ -58,10 +59,14 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      getAvatar();
+    if (typeof window !== 'undefined') {
+      // Client-side code here
+      if (token) {
+        getAvatar();
+      }
     }
   }, [token]);
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -82,7 +87,6 @@ const Navigation = () => {
             <NavigationMenuLink href="/" className="text-white text-sm px-3">
               Home
             </NavigationMenuLink>
-
             {token ? (
               <>
                 <NavigationMenuLink
@@ -135,9 +139,9 @@ const Navigation = () => {
           />
         </form>
         {/* Desktop Avatar */}
-        {token && ( 
+        {token && (
           <a href="/profile" className="hidden md:block">
-            <Avatar className='w-10 h-12'>
+            <Avatar className="w-10 h-12">
               <AvatarImage src={avatar} alt="Avatar" />
               <AvatarFallback>{name}</AvatarFallback>
             </Avatar>
@@ -164,7 +168,7 @@ const Navigation = () => {
               }`}
             >
               {/* Mobile Avatar */}
-              {token && ( 
+              {token && (
                 <div className="mb-4 flex justify-center">
                   <a href="/profile">
                     <Avatar className="w-10 h-12">

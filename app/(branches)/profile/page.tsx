@@ -34,7 +34,8 @@ const Profile = () => {
   const [avatar, setAvatar] = useState<string>('');
   const [games, setGames] = useState<Game[]>([]);
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-  const token = localStorage.getItem('token');
+  const token =
+  typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const decodedToken = jwt.decode(token as string);
   const [fetchedLikes, setFetchedLikes] = useState<number>(0);
 
