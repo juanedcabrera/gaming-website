@@ -12,6 +12,8 @@ import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import jwt from 'jsonwebtoken';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import defaultAvatar from '../../public/avatar.png';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -49,7 +51,11 @@ const Navigation = () => {
           throw new Error('Failed to fetch user avatar');
         }
         const data = await response.json();
+        if (data.user.avatar) {
         setAvatar(data.user.avatar);
+        } else {
+          setAvatar(defaultAvatar.src);
+        }
         setName(data.user.name);
       } catch (error) {
         console.error('Error fetching user avatar:', error);
@@ -143,7 +149,7 @@ const Navigation = () => {
           <a href="/profile" className="hidden md:block">
             <Avatar className="w-10 h-12">
               <AvatarImage src={avatar} alt="Avatar" />
-              <AvatarFallback>{name}</AvatarFallback>
+              <AvatarFallback>{defaultAvatar.src}</AvatarFallback>
             </Avatar>
           </a>
         )}
