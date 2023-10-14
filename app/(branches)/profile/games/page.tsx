@@ -41,7 +41,8 @@ const UserGames = () => {
     }
   };
 
-  const token = localStorage.getItem('token');
+  const token =
+  typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const decodedToken = token ? jwt.decode(token) : null;
   const userId = decodedToken? (decodedToken as any).id : null;
 

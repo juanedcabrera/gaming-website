@@ -12,6 +12,8 @@ import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import jwt from 'jsonwebtoken';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import defaultAvatar from '../../public/avatar.png';
+import Image from 'next/image';
 
 const Navigation = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -19,7 +21,8 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [avatar, setAvatar] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const token = localStorage.getItem('token');
+  const token =
+    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
   const handleSearchSubmit = async (event: any) => {
@@ -48,7 +51,11 @@ const Navigation = () => {
           throw new Error('Failed to fetch user avatar');
         }
         const data = await response.json();
+        if (data.user.avatar) {
         setAvatar(data.user.avatar);
+        } else {
+          setAvatar(defaultAvatar.src);
+        }
         setName(data.user.name);
       } catch (error) {
         console.error('Error fetching user avatar:', error);
@@ -58,10 +65,14 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      getAvatar();
+    if (typeof window !== 'undefined') {
+      // Client-side code here
+      if (token) {
+        getAvatar();
+      }
     }
   }, [token]);
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -82,7 +93,6 @@ const Navigation = () => {
             <NavigationMenuLink href="/" className="text-white text-sm px-3">
               Home
             </NavigationMenuLink>
-
             {token ? (
               <>
                 <NavigationMenuLink
@@ -135,11 +145,11 @@ const Navigation = () => {
           />
         </form>
         {/* Desktop Avatar */}
-        {token && ( 
+        {token && (
           <a href="/profile" className="hidden md:block">
-            <Avatar className='w-10 h-12'>
+            <Avatar className="w-10 h-12">
               <AvatarImage src={avatar} alt="Avatar" />
-              <AvatarFallback>{name}</AvatarFallback>
+              <AvatarFallback>{defaultAvatar.src}</AvatarFallback>
             </Avatar>
           </a>
         )}
@@ -164,7 +174,7 @@ const Navigation = () => {
               }`}
             >
               {/* Mobile Avatar */}
-              {token && ( 
+              {token && (
                 <div className="mb-4 flex justify-center">
                   <a href="/profile">
                     <Avatar className="w-10 h-12">
