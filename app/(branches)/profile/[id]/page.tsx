@@ -72,11 +72,12 @@ export default function ProfileView({ params }: { params: { id: string } }) {
         {profile ? (
           <>
             <div className="flex items-center space-x-4">
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="w-24 h-24 rounded-full"
-              />
+            <img
+  src={profile.avatar}
+  alt={profile.name}
+  className="rounded-full w-16 h-16 md:w-24 md:h-28 lg:w-32 lg:h-36 xl:w-40 xl:h-44"
+/>
+
               <div>
                 <h1 className="text-3xl font-semibold mb-2">{profile.name}</h1>
                 <p className="text-gray-400">{profile.username}</p>

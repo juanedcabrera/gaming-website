@@ -85,7 +85,7 @@ const Navigation = () => {
           <img
             src="/logo.png"
             alt="Logo"
-            className="object-contain h-10 w-10"
+            className="object-contain h-12 w-12"
           />
         </a>
         <div className="hidden md:flex space-x-4">
@@ -147,7 +147,7 @@ const Navigation = () => {
         {/* Desktop Avatar */}
         {token && (
           <a href="/profile" className="hidden md:block">
-            <Avatar className="w-10 h-12">
+            <Avatar className="w-12 h-17">
               <AvatarImage src={avatar} alt="Avatar" />
               <AvatarFallback>{defaultAvatar.src}</AvatarFallback>
             </Avatar>
@@ -177,7 +177,7 @@ const Navigation = () => {
               {token && (
                 <div className="mb-4 flex justify-center">
                   <a href="/profile">
-                    <Avatar className="w-10 h-12">
+                    <Avatar className="w-12 h-17">
                       <AvatarImage src={avatar} alt="Avatar" />
                       <AvatarFallback>{name}</AvatarFallback>
                     </Avatar>
