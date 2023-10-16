@@ -37,7 +37,7 @@ const ProfileForm: React.FC = () => {
   const [newPassword, setNewPassword] = useState<string>('');
   const [avatar, setAvatar] = useState<string>('');
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const profileFormSchema = z.object({
     username: z

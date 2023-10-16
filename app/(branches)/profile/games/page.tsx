@@ -24,7 +24,7 @@ interface Game {
 
 const UserGames = () => {
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
   // This will fetch all the games and then filter by the userId from the jwt. 
   const fetchUserGames = async () => {
     try {

@@ -24,7 +24,7 @@ interface GameData {
 
 const EditGame: React.FC = () => {
   const [game, setGame] = useState<Game | null>(null);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const fetchGame = async (gameId: string) => {
     try {

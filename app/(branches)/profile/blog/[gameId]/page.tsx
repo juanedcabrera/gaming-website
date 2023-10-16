@@ -31,7 +31,7 @@ const BlogPostDisplay = () => {
   const [game, setGame] = useState<Game | null>(null);
   const [imageLink, setImageLink] = useState('');
   const [videoLink, setVideoLink] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   // Get all blog posts for the game
   const getBlogPosts = async () => {
@@ -63,7 +63,7 @@ const BlogPostDisplay = () => {
   const handleDeletePost = async (postId: string) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:8000/api-v1/post/${postId}`, {
+      const response = await fetch(`${apiUrl}/api-v1/post/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ const Random: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPageDesktop = 3;
   const gamesPerPageMobile = 2;
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const fetchRandomGames = async () => {
     try {
