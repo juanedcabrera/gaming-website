@@ -63,7 +63,7 @@ const BlogPostDisplay = () => {
   const handleDeletePost = async (postId: string) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api-v1/post/${postId}`, {
+      const response = await fetch(`${apiUrl}/api-v1/post/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
