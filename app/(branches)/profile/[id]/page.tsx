@@ -30,7 +30,7 @@ interface Game {
 export default function ProfileView({ params }: { params: { id: string } }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const fetchProfile = async () => {
     try {

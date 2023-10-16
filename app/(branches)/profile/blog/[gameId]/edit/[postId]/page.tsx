@@ -31,7 +31,7 @@ const BlogPostForm: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [game, setGame] = useState<Game | null>(null);
 
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   // Effect Hook for Initialization
   useEffect(() => {

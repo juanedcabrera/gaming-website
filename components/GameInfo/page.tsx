@@ -5,7 +5,7 @@ import Like from '../Like/Like';
 const GameComponent: React.FC = () => {
   const [game, setGame] = useState<any>(null);
   const [numberOfLikes, setNumberOfLikes] = useState<number>(0);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
   const fetchGame = async () => {
     try {
       // Get the game ID from the URL

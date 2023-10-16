@@ -26,7 +26,7 @@ const Upload: React.FC = () => {
   const [link, setLink] = useState('');
   const [message, setMessage] = useState('');
   const [errorField, setErrorField] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);

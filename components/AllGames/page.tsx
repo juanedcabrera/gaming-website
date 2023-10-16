@@ -16,7 +16,7 @@ interface Game {
 
 const AllGames: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const fetchRandomGames = async () => {
     try {

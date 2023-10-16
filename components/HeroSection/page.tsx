@@ -21,7 +21,7 @@ interface HeroGame {
 
 const HeroSection: React.FC = () => {
   const [heroGame, setHeroGame] = useState<HeroGame | null>(null);
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
   const fetchHeroGame = async () => {
     try {
       // This is the objectID of the game we want to feature in the hero section

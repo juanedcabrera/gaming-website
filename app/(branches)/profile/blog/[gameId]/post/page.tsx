@@ -31,8 +31,7 @@ const BlogPostForm: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
-
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   // Effect Hook for Initialization
   useEffect(() => {
@@ -90,7 +89,7 @@ const BlogPostForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api-v1/post/${selectedGameId}`,
+        `${apiUrl}/api-v1/post/${selectedGameId}`,
         {
           method: 'POST',
           headers: {

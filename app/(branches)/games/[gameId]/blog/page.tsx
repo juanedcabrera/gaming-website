@@ -30,7 +30,7 @@ interface Game {
 
 const BlogPostDisplay = () => {
   const gameID = window.location.pathname.split('/')[2];
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
   const [blogPosts, setBlogPosts] = useState<Post[]>([]);
   const [game, setGame] = useState<Game | null>(null);
 

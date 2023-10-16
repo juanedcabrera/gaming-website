@@ -23,7 +23,7 @@ const Navigation = () => {
   const [name, setName] = useState<string>('');
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const apiUrl = process.env.REACT_APP_API_URL
 
   const handleSearchSubmit = async (event: any) => {
     event.preventDefault();
