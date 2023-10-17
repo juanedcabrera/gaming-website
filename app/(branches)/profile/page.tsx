@@ -33,9 +33,9 @@ const Profile = () => {
   const [bio, setBio] = useState<string>('');
   const [avatar, setAvatar] = useState<string>('');
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const token =
-  typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const decodedToken = jwt.decode(token as string);
   const [fetchedLikes, setFetchedLikes] = useState<number>(0);
 
@@ -147,7 +147,7 @@ const Profile = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {userGames.length > 0 ? (
                   userGames.map((game) => (
-                    <Card key={game._id} className='flex flex-col'>
+                    <Card key={game._id} className="flex flex-col">
                       <CardHeader>
                         <CardTitle className="text-3xl md:text-5xl font-semibold mb-4">
                           {game.title}

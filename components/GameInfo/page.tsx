@@ -5,16 +5,14 @@ import Like from '../Like/Like';
 const GameComponent: React.FC = () => {
   const [game, setGame] = useState<any>(null);
   const [numberOfLikes, setNumberOfLikes] = useState<number>(0);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchGame = async () => {
     try {
       // Get the game ID from the URL
       const gameID = window.location.pathname.split('/').pop();
 
       // Make an API request to fetch the game data
-      const response = await fetch(
-        `${apiUrl}/api-v1/game/${gameID}`
-      );
+      const response = await fetch(`${apiUrl}/api-v1/game/${gameID}`);
       if (!response.ok) {
         throw new Error('Failed to fetch game');
       }
@@ -37,7 +35,6 @@ const GameComponent: React.FC = () => {
   useEffect(() => {
     fetchGame();
   }, []);
-
 
   return (
     <div className="container mx-auto p-11 text-white ">
@@ -64,10 +61,14 @@ const GameComponent: React.FC = () => {
           {game ? (
             <div className="w-full h-97  overflow-hidden relative rounded-l-lg">
               <img
-                src={game.image || 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/NYD.svg'}
+                src={
+                  game.image ||
+                  'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/NYD.svg'
+                }
                 alt={game.title}
                 onError={(e) => {
-                  e.currentTarget.src = 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/NYD.svg';
+                  e.currentTarget.src =
+                    'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/NYD.svg';
                 }}
                 className="w-full md:w-[640px] md:h-[480px] object-cover"
               />
@@ -94,13 +95,23 @@ const GameComponent: React.FC = () => {
               </div>
               <div className="mb-4">
                 <p className="text-xl font-bold">Link:</p>
-                <a className="underline" href={game.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  className="underline"
+                  href={game.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {game.link}
                 </a>
               </div>
               <div className="mb-4">
                 <p className="text-xl font-bold">Github:</p>
-                <a className="underline" href={game.github} target="_blank" rel="noopener noreferrer">
+                <a
+                  className="underline"
+                  href={game.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {game.github}
                 </a>
               </div>
@@ -117,6 +128,5 @@ const GameComponent: React.FC = () => {
     </div>
   );
 };
-
 
 export default GameComponent;

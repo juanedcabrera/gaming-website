@@ -16,7 +16,7 @@ interface Game {
 
 const AllGames: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchRandomGames = async () => {
     try {
@@ -29,7 +29,7 @@ const AllGames: React.FC = () => {
       // Parse the response data as JSON
       const data = await response.json();
       // Update the games state variable with the fetched data
-      setGames(data.games)
+      setGames(data.games);
     } catch (error) {
       console.error('Error fetching random games:', error);
     }
@@ -37,9 +37,7 @@ const AllGames: React.FC = () => {
 
   useEffect(() => {
     fetchRandomGames();
-  }
-  , []);
-
+  }, []);
 
   return (
     <div>
@@ -62,6 +60,6 @@ const AllGames: React.FC = () => {
       </ul>
     </div>
   );
-        }  
+};
 
 export default AllGames;

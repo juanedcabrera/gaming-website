@@ -21,7 +21,7 @@ const NewGames: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPageDesktop = 3;
   const gamesPerPageMobile = 2;
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchNewGames = async () => {
     try {
@@ -30,12 +30,15 @@ const NewGames: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch random games');
       }
-  
+
       // Parse the response data as JSON
       const data = await response.json();
       setGames(
         data.games
-          .sort((a: Game, b: Game) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .sort(
+            (a: Game, b: Game) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          )
           .reverse()
       );
     } catch (error) {
@@ -76,7 +79,7 @@ const NewGames: React.FC = () => {
     onSwipedLeft: handleSwipeLeft,
     onSwipedRight: handleSwipeRight,
   });
-  const lastPage = Math.ceil(games.length / (gamesPerPageDesktop));
+  const lastPage = Math.ceil(games.length / gamesPerPageDesktop);
 
   return (
     <div className="max-w-screen-xl mx-auto">
@@ -85,7 +88,9 @@ const NewGames: React.FC = () => {
         {games.length > 0 ? (
           games.map((game, index) => {
             const isMobile = window.innerWidth <= 768;
-            const gamesPerPage = isMobile ? gamesPerPageMobile : gamesPerPageDesktop;
+            const gamesPerPage = isMobile
+              ? gamesPerPageMobile
+              : gamesPerPageDesktop;
             if (
               index >= (currentPage - 1) * gamesPerPage &&
               index < currentPage * gamesPerPage
@@ -98,30 +103,32 @@ const NewGames: React.FC = () => {
                   } bg-gray-900 rounded-lg shadow-lg p-1 mx-2`}
                 >
                   <Link href={`/games/${game._id}`} passHref>
-                  
-                      <img
-                        src={game.image || 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/'}
-                        alt={game.title}
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/';
-                        }}
-                        className="w-full h-64 object-cover rounded-t-lg"
-                      />
-                      <div className="p-4">
-                        <h3 className="text-xl lg:text-2xl font-bold mb-2">
-                          {game.title}
-                        </h3>
-                        <p className="text-base lg:text-lg mb-2">
-                          By: {game.userName}
-                        </p>
-                        <p className="text-base lg:text-lg mb-2">
-                          Category: {game.category}
-                        </p>
-                        <p className="text-base lg:text-lg">
-                          Description: {game.description}
-                        </p>
-                      </div>
-                   
+                    <img
+                      src={
+                        game.image ||
+                        'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/'
+                      }
+                      alt={game.title}
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/';
+                      }}
+                      className="w-full h-64 object-cover rounded-t-lg"
+                    />
+                    <div className="p-4">
+                      <h3 className="text-xl lg:text-2xl font-bold mb-2">
+                        {game.title}
+                      </h3>
+                      <p className="text-base lg:text-lg mb-2">
+                        By: {game.userName}
+                      </p>
+                      <p className="text-base lg:text-lg mb-2">
+                        Category: {game.category}
+                      </p>
+                      <p className="text-base lg:text-lg">
+                        Description: {game.description}
+                      </p>
+                    </div>
                   </Link>
                 </div>
               );

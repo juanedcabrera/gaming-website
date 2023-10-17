@@ -47,7 +47,7 @@ export default function Like(props: { game: Game }) {
   const [like, setLike] = useState<any>(null);
   const [fetchedLikes, setFetchedLikes] = useState<any>(null);
   const token = localStorage.getItem('token') || '';
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     if (token) {

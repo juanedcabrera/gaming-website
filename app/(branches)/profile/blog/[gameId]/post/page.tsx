@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
@@ -21,7 +21,6 @@ interface Game {
   description: string;
 }
 
-
 const BlogPostForm: React.FC = () => {
   // State Hooks
   const [title, setTitle] = useState('');
@@ -31,7 +30,7 @@ const BlogPostForm: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [games, setGames] = useState<Game[]>([]);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Effect Hook for Initialization
   useEffect(() => {
@@ -88,24 +87,21 @@ const BlogPostForm: React.FC = () => {
     console.error('gameId', gameId);
 
     try {
-      const response = await fetch(
-        `${apiUrl}/api-v1/post/${selectedGameId}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`,
-          },
-          body: JSON.stringify({
-            userName: decodedToken ? decodedToken.userName : '',
-            title,
-            content,
-            gameId,
-            imageLink,
-            videoLink,
-          }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/api-v1/post/${selectedGameId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify({
+          userName: decodedToken ? decodedToken.userName : '',
+          title,
+          content,
+          gameId,
+          imageLink,
+          videoLink,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to create post');

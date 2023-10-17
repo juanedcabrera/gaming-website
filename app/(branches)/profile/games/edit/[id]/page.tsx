@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useState, FormEvent } from 'react';
 
 interface Game {
@@ -24,7 +24,7 @@ interface GameData {
 
 const EditGame: React.FC = () => {
   const [game, setGame] = useState<Game | null>(null);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchGame = async (gameId: string) => {
     try {
@@ -96,10 +96,21 @@ const EditGame: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block font-semibold text-white">Title:</label>
-              <input type="text" name="title" defaultValue={game?.title} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
-              <label className="block font-semibold text-white">Category:</label>
-              <select required className="w-full p-2 border rounded bg-gray-100 text-black">
+              <input
+                type="text"
+                name="title"
+                defaultValue={game?.title}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
+              <label className="block font-semibold text-white">
+                Category:
+              </label>
+              <select
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              >
                 <option value="">Select a category</option>
                 <option value="Action">Action</option>
                 <option value="Adventure">Adventure</option>
@@ -114,25 +125,65 @@ const EditGame: React.FC = () => {
                 <option value="MMO">MMO</option>
                 <option value="Arcade">Arcade</option>
               </select>
-      
-              <label className="block font-semibold text-white">Description:</label>
-              <input type="text" name="description" defaultValue={game?.description} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
+
+              <label className="block font-semibold text-white">
+                Description:
+              </label>
+              <input
+                type="text"
+                name="description"
+                defaultValue={game?.description}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
               <label className="block font-semibold text-white">Image:</label>
-              <input type="text" name="image" defaultValue={game?.image} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
-              <label className="block font-semibold text-white">Techstack:</label>
-              <input type="text" name="techstack" defaultValue={game?.techstack} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
+              <input
+                type="text"
+                name="image"
+                defaultValue={game?.image}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
+              <label className="block font-semibold text-white">
+                Techstack:
+              </label>
+              <input
+                type="text"
+                name="techstack"
+                defaultValue={game?.techstack}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
               <label className="block font-semibold text-white">Github:</label>
-              <input type="text" name="github" defaultValue={game?.github} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
-              <label className="block font-semibold text-white">Deployment:</label>
-              <input type="text" name="link" defaultValue={game?.link} required className="w-full p-2 border rounded bg-gray-100 text-black" />
-      
+              <input
+                type="text"
+                name="github"
+                defaultValue={game?.github}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
+              <label className="block font-semibold text-white">
+                Deployment:
+              </label>
+              <input
+                type="text"
+                name="link"
+                defaultValue={game?.link}
+                required
+                className="w-full p-2 border rounded bg-gray-100 text-black"
+              />
+
               <input type="hidden" name="userId" defaultValue={game?.userId} />
-      
-              <input type="submit" value="Submit" className="mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded cursor-pointer hover:bg-blue-700" />
+
+              <input
+                type="submit"
+                value="Submit"
+                className="mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded cursor-pointer hover:bg-blue-700"
+              />
             </div>
           </form>
         </div>
@@ -140,7 +191,6 @@ const EditGame: React.FC = () => {
       <div></div>
     </div>
   );
-  
 };
 
 export default EditGame;

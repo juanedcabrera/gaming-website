@@ -30,7 +30,7 @@ interface Game {
 export default function ProfileView({ params }: { params: { id: string } }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchProfile = async () => {
     try {
@@ -72,11 +72,11 @@ export default function ProfileView({ params }: { params: { id: string } }) {
         {profile ? (
           <>
             <div className="flex items-center space-x-4">
-            <img
-  src={profile.avatar}
-  alt={profile.name}
-  className="rounded-full w-16 h-16 md:w-24 md:h-28 lg:w-32 lg:h-36 xl:w-40 xl:h-44"
-/>
+              <img
+                src={profile.avatar}
+                alt={profile.name}
+                className="rounded-full w-16 h-16 md:w-24 md:h-28 lg:w-32 lg:h-36 xl:w-40 xl:h-44"
+              />
 
               <div>
                 <h1 className="text-3xl font-semibold mb-2">{profile.name}</h1>
@@ -93,28 +93,28 @@ export default function ProfileView({ params }: { params: { id: string } }) {
                 {games.length > 0 ? (
                   games.map((game) => (
                     <a href={`/games/${game._id}`} key={game._id}>
-                    <Card key={game._id}>
-                      <CardHeader>
-                        <CardTitle className="text-3xl md:text-5xl font-semibold mb-2">
-                          {game.title}
-                        </CardTitle>
-                        <CardDescription>
-                          <img
-                            src={game.image}
-                            alt={game.title}
-                            className="w-full h-48 object-cover mb-2 md:mb-4 rounded-lg"
-                          />
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-base md:text-lg">
-                          Category: {game.category}
-                        </p>
-                        <p className="text-base md:text-lg">
-                          Description: {game.description}
-                        </p>
-                      </CardContent>
-                    </Card>
+                      <Card key={game._id}>
+                        <CardHeader>
+                          <CardTitle className="text-3xl md:text-5xl font-semibold mb-2">
+                            {game.title}
+                          </CardTitle>
+                          <CardDescription>
+                            <img
+                              src={game.image}
+                              alt={game.title}
+                              className="w-full h-48 object-cover mb-2 md:mb-4 rounded-lg"
+                            />
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-base md:text-lg">
+                            Category: {game.category}
+                          </p>
+                          <p className="text-base md:text-lg">
+                            Description: {game.description}
+                          </p>
+                        </CardContent>
+                      </Card>
                     </a>
                   ))
                 ) : (

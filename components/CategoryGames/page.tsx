@@ -23,7 +23,7 @@ const CategoryGames: React.FC<Props> = ({ category }) => {
   const [games, setGames] = useState<Game[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const gamesPerPage = 6;
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchGamesByCategory = async () => {
     try {
@@ -98,10 +98,14 @@ const CategoryGames: React.FC<Props> = ({ category }) => {
             <div className="w-full h-64 md:h-80 lg:h-96">
               <a href={`/games/${game._id}`}>
                 <img
-                  src={game.image || 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/'}
+                  src={
+                    game.image ||
+                    'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/'
+                  }
                   alt={game.title}
                   onError={(e) => {
-                    e.currentTarget.src = 'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/';
+                    e.currentTarget.src =
+                      'https://ucarecdn.com/5df07fe1-89d2-44b5-be91-004613f1e288/';
                   }}
                   className="object-cover w-full h-full rounded-lg"
                 />

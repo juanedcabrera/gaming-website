@@ -26,7 +26,7 @@ const Upload: React.FC = () => {
   const [link, setLink] = useState('');
   const [message, setMessage] = useState('');
   const [errorField, setErrorField] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -114,129 +114,124 @@ const Upload: React.FC = () => {
     });
   };
 
-
   return (
     <div className="p-8 bg-gray-800">
+      <>
+        <h2 className="text-2xl font-bold mb-4 text-white">Upload Game</h2>
+        {message && <p className="text-red-500 italic">{message}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="flex align-center font-semibold text-white">
+              Title:
+            </label>
+            <input
+              type="text"
+              value={title}
+              placeholder="Enter a title for the game"
+              onChange={handleTitleChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
+            <label className="block font-semibold text-white">
+              Description:
+            </label>
+            <input
+              type="text"
+              value={description}
+              placeholder="Enter a description of the game"
+              onChange={handleDescriptionChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
+            <label className="block font-semibold text-white">Category:</label>
+            <select
+              value={category}
+              onChange={handleCategoryChange}
+              required
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Select a category</option>
+              <option value="Action">Action</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Strategy">Strategy</option>
+              <option value="RPG">RPG</option>
+              <option value="Puzzle">Puzzle</option>
+              <option value="Simulation">Simulation</option>
+              <option value="Sports">Sports</option>
+              <option value="Racing">Racing</option>
+              <option value="CardandBoard">Card & Board</option>
+              <option value="Casual">Casual</option>
+              <option value="MMO">MMO</option>
+              <option value="Arcade">Arcade</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-semibold text-white">Techstack:</label>
+            <input
+              type="text"
+              value={techstack}
+              placeholder="Enter the techstack used for the game"
+              onChange={handleTechstackChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
-        <>
-          <h2 className="text-2xl font-bold mb-4 text-white">Upload Game</h2>
-          {message && <p className="text-red-500 italic">{message}</p>}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="flex align-center font-semibold text-white">
-                Title:
-              </label>
-              <input
-                type="text"
-                value={title}
-                placeholder='Enter a title for the game'
-                onChange={handleTitleChange}
-                required
-                className="w-full p-2 border rounded"
-              />
+          <div>
+            <label className="block font-semibold text-white">Image:</label>
+            <div className="m-4">
+              <Alert>
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                  We use a 3/2 aspect ratio for our images. The ideal size is
+                  640x480 as this is what will be displayed on the desktop.
+                </AlertDescription>
+              </Alert>
             </div>
-            <div>
-              <label className="block font-semibold text-white">
-                Description:
-              </label>
-              <input
-                type="text"
-                value={description}
-                placeholder='Enter a description of the game'
-                onChange={handleDescriptionChange}
-                required
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold text-white">
-                Category:
-              </label>
-              <select
-                value={category}
-                onChange={handleCategoryChange}
-                required
-                className="w-full p-2 border rounded"
-              >
-                <option value="">Select a category</option>
-                <option value="Action">Action</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Strategy">Strategy</option>
-                <option value="RPG">RPG</option>
-                <option value="Puzzle">Puzzle</option>
-                <option value="Simulation">Simulation</option>
-                <option value="Sports">Sports</option>
-                <option value="Racing">Racing</option>
-                <option value="CardandBoard">Card & Board</option>
-                <option value="Casual">Casual</option>
-                <option value="MMO">MMO</option>
-                <option value="Arcade">Arcade</option>
-              </select>
-            </div>
-            <div>
-              <label className="block font-semibold text-white">
-                Techstack:
-              </label>
-              <input
-                type="text"
-                value={techstack}
-                placeholder='Enter the techstack used for the game'
-                onChange={handleTechstackChange}
-                required
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold text-white">Image:</label>
-              <div className="m-4">
-                <Alert>
-                  <AlertTitle>Heads up!</AlertTitle>
-                  <AlertDescription>
-                    We use a 3/2 aspect ratio for our images. The ideal size is 640x480 as this is what will be displayed on the desktop.
-                  </AlertDescription>
-                </Alert>
-              </div>
-              <input
-                type="text"
-                value={image}
-                placeholder='Enter the image URL for the game'
-                onChange={handleImageChange}
-                required
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold text-white">Github:</label>
-              <input
-                type="text"
-                value={github}
-                placeholder='Enter the Github link for the game'
-                onChange={handleGithubChange}
-                required
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="flex align-center font-semibold text-white">
-                Deployed Game Link:
-              </label>
-              <input
-                type="text"
-                value={link}
-                placeholder='Enter the deployed game link'
-                onChange={handleLinkChange}
-                required
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <Button type="submit" variant={'secondary'}>
-              Upload
-            </Button>
-          </form>
-        </>
+            <input
+              type="text"
+              value={image}
+              placeholder="Enter the image URL for the game"
+              onChange={handleImageChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
+            <label className="block font-semibold text-white">Github:</label>
+            <input
+              type="text"
+              value={github}
+              placeholder="Enter the Github link for the game"
+              onChange={handleGithubChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
+            <label className="flex align-center font-semibold text-white">
+              Deployed Game Link:
+            </label>
+            <input
+              type="text"
+              value={link}
+              placeholder="Enter the deployed game link"
+              onChange={handleLinkChange}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <Button type="submit" variant={'secondary'}>
+            Upload
+          </Button>
+        </form>
+      </>
     </div>
   );
-}
+};
 
 export default Upload;

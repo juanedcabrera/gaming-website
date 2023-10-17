@@ -11,7 +11,7 @@ interface BlogPost {
 
 const BlogPostDetails = () => {
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   // Fetch the blog post data based on [blogId] from the URL
   const blogId = window.location.pathname.split('/').pop();

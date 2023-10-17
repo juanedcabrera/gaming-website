@@ -21,7 +21,7 @@ const Random: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPageDesktop = 3;
   const gamesPerPageMobile = 2;
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchRandomGames = async () => {
     try {
@@ -30,11 +30,10 @@ const Random: React.FC = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch random games');
       }
-
       // Parse the response data as JSON
       const data = await response.json();
       // Update the games state variable with the fetched data
-      setGames(data);
+      setGames(data)
     } catch (error) {
       console.error('Error fetching random games:', error);
     }
