@@ -68,7 +68,6 @@ const RandomCreators: React.FC = () => {
     onSwipedRight: handleSwipeRight,
   });
   const lastPage = Math.ceil(users.length / usersPerPageDesktop);
-  console.log({ users });
 
   const hasAvatar = (user: User) => {
     if (!user.avatar || user.avatar == '') {
