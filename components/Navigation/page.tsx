@@ -23,7 +23,7 @@ const Navigation = () => {
   const [name, setName] = useState<string>('');
   const token =
     typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSearchSubmit = async (event: any) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ const Navigation = () => {
         }
         const data = await response.json();
         if (data.user.avatar) {
-        setAvatar(data.user.avatar);
+          setAvatar(data.user.avatar);
         } else {
           setAvatar(defaultAvatar.src);
         }
@@ -72,7 +72,6 @@ const Navigation = () => {
       }
     }
   }, [token]);
-  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

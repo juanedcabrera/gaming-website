@@ -1,7 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 // Interfaces
@@ -31,14 +36,12 @@ const BlogPostDisplay = () => {
   const [game, setGame] = useState<Game | null>(null);
   const [imageLink, setImageLink] = useState('');
   const [videoLink, setVideoLink] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Get all blog posts for the game
   const getBlogPosts = async () => {
     try {
-      const response = await fetch(
-        `${apiUrl}/api-v1/post/all/${gameID}`
-      );
+      const response = await fetch(`${apiUrl}/api-v1/post/all/${gameID}`);
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');
       }
@@ -74,7 +77,9 @@ const BlogPostDisplay = () => {
         throw new Error('Failed to delete the blog post');
       }
       // Update the UI by removing the deleted blog post from the state
-      setBlogPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+      setBlogPosts((prevPosts) =>
+        prevPosts.filter((post) => post._id !== postId)
+      );
     } catch (error) {
       console.error('Error deleting blog post:', error);
     }
@@ -120,7 +125,9 @@ const BlogPostDisplay = () => {
               </CardContent>
               <div className="flex justify-between mt-2">
                 <Button onClick={() => handleEditPost(post._id)}>Edit</Button>
-                <Button onClick={() => handleDeletePost(post._id)}>Delete</Button>
+                <Button onClick={() => handleDeletePost(post._id)}>
+                  Delete
+                </Button>
               </div>
             </Card>
           ))}

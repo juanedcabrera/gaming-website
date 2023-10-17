@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import jwt from 'jsonwebtoken';
 
@@ -7,7 +7,7 @@ const Registration: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);

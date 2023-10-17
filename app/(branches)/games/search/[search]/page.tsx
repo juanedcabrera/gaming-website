@@ -18,7 +18,7 @@ interface Game {
 export default function Search({ params }: { params: { search: string } }) {
   const [search, setSearch] = useState('');
   const [games, setGames] = useState<Game[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     async function searchGames() {
@@ -31,7 +31,6 @@ export default function Search({ params }: { params: { search: string } }) {
         }
         const data = await response.json();
         setGames(data.games);
-
       } catch (error) {
         console.error('Error searching for game:', error);
       }

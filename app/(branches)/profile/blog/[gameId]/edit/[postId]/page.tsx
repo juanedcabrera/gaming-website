@@ -21,7 +21,6 @@ interface Game {
   description: string;
 }
 
-
 const BlogPostForm: React.FC = () => {
   // State Hooks
   const [title, setTitle] = useState('');
@@ -31,7 +30,7 @@ const BlogPostForm: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [game, setGame] = useState<Game | null>(null);
 
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // Effect Hook for Initialization
   useEffect(() => {
@@ -55,9 +54,7 @@ const BlogPostForm: React.FC = () => {
     // Get post information
     const getPostInformation = async () => {
       try {
-        const response = await fetch(
-          `${apiUrl}/api-v1/post/${postId}`
-        );
+        const response = await fetch(`${apiUrl}/api-v1/post/${postId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch post information');
         }
@@ -76,9 +73,7 @@ const BlogPostForm: React.FC = () => {
 
     const getGameInformation = async () => {
       try {
-        const response = await fetch(
-          `${apiUrl}/api-v1/game/${gameID}`
-        );
+        const response = await fetch(`${apiUrl}/api-v1/game/${gameID}`);
         if (!response.ok) {
           throw new Error('Failed to fetch game information');
         }
@@ -111,24 +106,21 @@ const BlogPostForm: React.FC = () => {
 
       const postId = window.location.pathname.split('/')[5];
       const gameId = window.location.pathname.split('/')[3];
-      const response = await fetch(
-        `${apiUrl}/api-v1/post/${postId}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          body: JSON.stringify({
-            title,
-            content,
-            postId,
-            gameId,
-            imageLink,
-            videoLink,
-          }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/api-v1/post/${postId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          title,
+          content,
+          postId,
+          gameId,
+          imageLink,
+          videoLink,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to create post');

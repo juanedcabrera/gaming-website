@@ -16,7 +16,7 @@ const RandomCreators: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPageDesktop = 3;
   const usersPerPageMobile = 2;
-  const apiUrl = process.env.REACT_APP_API_URL
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const fetchRandomUsers = async () => {
     try {
       // Make an API request to fetch random users data
@@ -38,7 +38,6 @@ const RandomCreators: React.FC = () => {
     fetchRandomUsers();
   }, []);
 
-
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -52,8 +51,6 @@ const RandomCreators: React.FC = () => {
   }, [users]);
 
   const canGoPrevious = currentPage > 1;
-
-
 
   const handleSwipeLeft = () => {
     if (currentPage < lastPage) {
@@ -70,8 +67,8 @@ const RandomCreators: React.FC = () => {
     onSwipedLeft: handleSwipeLeft,
     onSwipedRight: handleSwipeRight,
   });
-  const lastPage = Math.ceil(users.length / (usersPerPageDesktop));
-  console.log({users})
+  const lastPage = Math.ceil(users.length / usersPerPageDesktop);
+  console.log({ users });
 
   const hasAvatar = (user: User) => {
     if (!user.avatar || user.avatar == '') {
@@ -79,16 +76,20 @@ const RandomCreators: React.FC = () => {
     } else {
       return user.avatar;
     }
-  }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <h2 className="flex text-3xl font-bold mb-4 justify-center">Random Creators</h2>
+      <h2 className="flex text-3xl font-bold mb-4 justify-center">
+        Random Creators
+      </h2>
       <div className="flex overflow-x-auto" {...swipeHandlers}>
         {users.length > 0 ? (
           users.map((user, index) => {
             const isMobile = window.innerWidth <= 768;
-            const usersPerPage = isMobile ? usersPerPageMobile : usersPerPageDesktop;
+            const usersPerPage = isMobile
+              ? usersPerPageMobile
+              : usersPerPageDesktop;
             if (
               index >= (currentPage - 1) * usersPerPage &&
               index < currentPage * usersPerPage
@@ -101,25 +102,23 @@ const RandomCreators: React.FC = () => {
                   } bg-gray-900 rounded-lg shadow-lg p-1 mx-2`}
                 >
                   <Link href={`/profile/${user._id}`} passHref>
-                  
-                      <img
-                        src={hasAvatar(user)}
-                        alt={user.userName}
-                        className="w-full h-64 object-cover rounded-t-lg"
-                      /> 
-                    
-                      <div className="p-4">
-                        <p className="text-base lg:text-lg mb-2">
-                          By: {user.userName}
-                        </p>
-                        <p className="text-base lg:text-lg mb-2">
-                          Games: {user.games?.length || 0}
-                        </p>
-                        <p className="text-base lg:text-lg mb-2">
-                          Bio: {user.bio}
-                        </p>
-                      </div>
-                   
+                    <img
+                      src={hasAvatar(user)}
+                      alt={user.userName}
+                      className="w-full h-64 object-cover rounded-t-lg"
+                    />
+
+                    <div className="p-4">
+                      <p className="text-base lg:text-lg mb-2">
+                        By: {user.userName}
+                      </p>
+                      <p className="text-base lg:text-lg mb-2">
+                        Games: {user.games?.length || 0}
+                      </p>
+                      <p className="text-base lg:text-lg mb-2">
+                        Bio: {user.bio}
+                      </p>
+                    </div>
                   </Link>
                 </div>
               );
