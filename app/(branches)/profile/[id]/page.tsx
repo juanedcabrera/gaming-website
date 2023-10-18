@@ -66,7 +66,7 @@ export default function ProfileView({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-800 text-white">
+    <div className="p-6 bg-gray-800 text-white min-h-screen">
       <div className="container mx-auto">
         <h1 className="text-3xl font-semibold mb-4">Profile View</h1>
         {profile ? (
