@@ -32,7 +32,7 @@ const Games = () => {
   };
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <form>
         <select onChange={handleCategoryChange} value={selectedCategory}>
           <option value="">Select a Category</option>
