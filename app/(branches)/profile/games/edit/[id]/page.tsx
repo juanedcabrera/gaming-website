@@ -87,6 +87,20 @@ const EditGame: React.FC = () => {
     }
   };
 
+  // Handle the onChange event to update the selected category
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCategory = event.target.value;
+    setGame((prevGame) => {
+      if (prevGame) {
+        return {
+          ...prevGame,
+          category: selectedCategory,
+        };
+      }
+      return null;
+    });
+  };
+
   return (
     <div className="grid md:grid-cols-5 bg-gray-800">
       <div></div>
@@ -110,6 +124,8 @@ const EditGame: React.FC = () => {
               <select
                 required
                 className="w-full p-2 border rounded bg-gray-100 text-black"
+                value={game?.category}
+                onChange={handleCategoryChange}
               >
                 <option value="">Select a category</option>
                 <option value="Action">Action</option>
