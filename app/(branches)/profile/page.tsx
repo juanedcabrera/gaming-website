@@ -13,6 +13,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Separator } from '@/components/ui/separator';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import defaultAvatar from '../../../public/avatar.png';
 
 interface Game {
   userId: number;
@@ -123,7 +125,7 @@ const Profile = () => {
               , welcome back !
             </h2>
             <img
-              src={avatar}
+              src={avatar || defaultAvatar.src}
               alt="avatar"
               className="w-32 h-32 object-cover mb-4 md:mb-6 rounded-full"
             />
